@@ -1,0 +1,29 @@
+<section class="content">
+  <div class="row">
+    <p id="notice"><%= notice %></p>
+    <div class="col-md-6">
+      <div class="box box-widget widget-user-2">
+        <div class="widget-user-header bg-yellow">
+          <div class="widget-user-image">
+            <img src="/user1-128x128.jpg" alt="User Avatar" class="img-circle">
+          </div>
+          <h3 class="widget-user-username"><%= @user.user_name %></h3>
+          <h5 class="widget-user-desc"><%= @user.email %></h5>
+        </div>
+        <div class="box-footer no-padding">
+          <ul class="nav nav-stacked">
+            <li>
+              <a href="#">Editar perfil</a>
+            </li>
+            <li>
+              <a href="#">Editar endereço</a>
+            </li>
+            <li>
+              <a href="#">Minhas adoções</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

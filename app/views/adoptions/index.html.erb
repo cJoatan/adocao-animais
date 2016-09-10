@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<section class="content-header">
+  <h1>Adoptions</h1>
+</section>
+
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <% @adoptions.each do |adoption| %>
+        <div class="list-group-item col-sm-10">
+          <div class="col-xs-3 col-sm-2">
+            <%= image_tag adoption.adoptions_images.first.avatar.url(:thumb), class: "img-responsive" if adoption.adoptions_images.first != nil %>          
+          </div>
+          <div class="col-xs-9 col-sm-4">
+            <h4 class="list-group-item-heading">
+              <%= link_to adoption.title, adoption %>
+            </h4>
+            <p class="list-group-item-text"><b><%= adoption.animal.name %></b> da raça <b><%= adoption.breed.name %></b>, enviado em <b><%= l adoption.created_at, format: :short %></b></p>
+          </div>
+          <div class="col-xs-11 col-sm-4">
+            <p class="list-group-item-description"><%= adoption.description %></p>
+          </div>
+          <div class="col-xs-1 col-sm-2 text-center">
+            <h4>
+              <% if adoption.price.present? %>
+                <div class="hidden-xs"><%= adoption.price %> R$</div>
+              <% else %>
+                <div class="hidden-xs">Sem preço</div>
+              <% end %>
+              <span class="badge badge-important">
+                5 interessados (mock)
+              </span>
+            </h4>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

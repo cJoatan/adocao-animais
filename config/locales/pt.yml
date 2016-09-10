@@ -1,0 +1,268 @@
+pt:
+  activemodel:
+    attributes:
+      access_level_session:
+        email: Email
+        password: Senha
+    errors:
+      messages:
+        invalid_login: "Usuário ou senha inválidos"
+  layout:
+    signup: Logar
+    advanced_search: Busca avançada
+  access_level_sessions:
+    new:
+      title: Logar
+  students:
+    new:
+      title: Novo aluno
+    edit:
+      title: Editar aluno
+  activerecord:
+    models: 
+      user: Usuário
+      student: Aluno
+      professor: Professor
+      answer: Resposta
+      branch: Filial
+      class_professor_subject: Classe Professor Matéria
+      class_room: Sala
+      class_schedule: Horário
+      coordinator: Coordenador
+      course: Curso
+      exam: Prova
+      forum_post: Post
+      lesson: Aula
+      main_score: Nota Principal
+      period: Período
+      report: Reporte
+      report_answer: Reposta Reportada
+      report_card: Boletim
+      report_forum_post: Post reportado
+      schedule_day_class_room: Horário Dia Sala
+      school: Escola
+      school_class: Classe
+      school_user: Usuário de Escola
+      score: Nota
+      subject: Matéria
+    attributes:
+      user: 
+        email: Email
+        full_name: Nome Completo
+        password: Senha
+        password_confirmation: Confirme sua senha
+        born_date: Data de nascimento
+      coordinators: 
+        branches: Filial
+      professors:
+        branches: Filial
+      period:
+        description: Descrição
+        begin_date: Data Inicial
+        finish_date: Data Final
+      branch:
+        city: Cidade
+        adress: Endereço
+        cep: Cep
+        state: Estado
+      school_class:
+        description: Descrição
+        branch: Filial
+        course: Curso
+        period: Período
+      class_room:
+        name: Nome
+        complement: Complemento
+        branch: Filial
+      class_schedule:
+        begin: Inicio
+        end: Fim
+      main_score:
+        description: Descrição
+        weight: Peso
+  periods:
+    new:
+      title: Período
+      subtitle: Adicionar
+    edit:
+      title: Período
+      subtitle: Editar
+    show:
+      title: Período
+      subtitle: Informações
+    index:
+      title: Período
+      subtitle: Lista
+  branches:
+    new:
+      title: Filial
+      subtitle: Adicionar
+    edit:
+      title: Filial
+      subtitle: Editar
+    show:
+      title: Filial
+      subtitle: Informações
+    index:
+      title: Filial
+      subtitle: Lista
+  courses:
+    new:
+      title: Curso
+      subtitle: Adicionar
+    edit:
+      title: Curso
+      subtitle: Editar
+    show:
+      title: Curso
+      subtitle: Informações
+    index:
+      title: Curso
+      subtitle: Lista
+  school_classes:
+    new:
+      title: Turma
+      subtitle: Adicionar
+    edit:
+      title: Turma
+      subtitle: Editar
+    show:
+      title: Turma
+      subtitle: Informações
+    index:
+      title: Turma
+      subtitle: Lista
+  subjects:
+    new:
+      title: Matéria
+      subtitle: Adicionar
+    edit:
+      title: Matéria
+      subtitle: Editar
+    show:
+      title: Matéria
+      subtitle: Informações
+    index:
+      title: Matéria
+      subtitle: Lista
+  class_rooms:
+    new:
+      title: Sala
+      subtitle: Adicionar
+    edit:
+      title: Sala
+      subtitle: Editar
+    show:
+      title: Sala
+      subtitle: Informações
+    index:
+      title: Sala
+      subtitle: Lista
+  class_schedule:
+    new:
+      title: Horários
+      subtitle: Adicionar
+    edit:
+      title: Horários
+      subtitle: Editar
+    show:
+      title: Horários
+      subtitle: Informações
+    index:
+      title: Horários
+      subtitle: Lista
+  main_scores:
+    new:
+      title: Nota Principal
+      subtitle: Adicionar
+    edit:
+      title: Nota Principal
+      subtitle: Editar
+    show:
+      title: Nota Principal
+      subtitle: Informações
+    index:
+      title: Nota Principal
+      subtitle: Lista
+  users:
+    new:
+      title: Usuário
+      subtitle: Adicionar
+    edit:
+      title: Usuário
+      subtitle: Editar
+    show:
+      title: Usuário
+      subtitle: Informações
+    index:
+      title: Usuário
+      subtitle: Lista
+  administrators:
+    new:
+      title: Administrador
+      subtitle: Adicionar
+    edit:
+      title: Administrador
+      subtitle: Editar
+    show:
+      title: Administrador
+      subtitle: Informações
+    index:
+      title: Administrador
+      subtitle: Lista
+  coordinators:
+    new:
+      title: Coordenador
+      subtitle: Adicionar
+    edit:
+      title: Coordenador
+      subtitle: Editar
+    show:
+      title: Coordenador
+      subtitle: Informações
+    index:
+      title: Coordenador
+      subtitle: Lista
+  professors:
+    new:
+      title: Professor
+      subtitle: Adicionar
+    edit:
+      title: Professor
+      subtitle: Editar
+    show:
+      title: Professor
+      subtitle: Informações
+    index:
+      title: Professor
+      subtitle: Lista
+  students:
+    new:
+      title: Estudante
+      subtitle: Adicionar
+    edit:
+      title: Estudante
+      subtitle: Editar
+    show:
+      title: Estudante
+      subtitle: Informações
+    index:
+      title: Estudante
+      subtitle: Lista
+  links:
+    back: Voltar
+    show: Acessar
+    edit: Editar
+    create: Adicionar
+    index: Lista
+    destroy: Deletar
+    manage: Gerenciar
+  views:
+    pagination:
+      previous: Anterior
+      next: Próximo
+      first: Primeiro
+      last: Último
+      truncate: "..."
+  disabled: Desabilitado
+  enabled: Habilitado

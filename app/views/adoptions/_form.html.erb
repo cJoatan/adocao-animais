@@ -1,0 +1,57 @@
+<%= form_for(adoption) do |f| %>
+  <% if adoption.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(adoption.errors.count, "error") %> prohibited this adoption from being saved:</h2>
+
+      <ul>
+      <% adoption.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control"  %>
+  </div>
+
+   <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: "form-control"  %>
+  </div>
+
+  <div class="form-group col-sm-6">
+    <%= f.label :animal_id %>
+    <%= f.collection_select :animal_id, @animals, :id, :name, {}, class: "form-control" %>
+  </div>
+
+  <div class="form-group col-sm-6">
+    <%= f.label :breed_id %>
+    <%= f.collection_select :breed_id, @breeds, :id, :name, {}, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price %>
+    <%= f.text_field :price, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :age, "Age(Months)" %>
+    <%= f.number_field :age, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :user_creator_id %>
+    <%= f.number_field :user_creator_id, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :user_adopted_id %>
+    <%= f.number_field :user_adopted_id, class: "form-control"  %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit nil, class:"btn btn-danger"%>
+  </div>
+<% end %>
