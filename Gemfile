@@ -34,6 +34,7 @@ gem 'mysql2', '~> 0.4.4'
 
 #Postgree
 gem 'pg'
+
 #Secure
 gem 'devise'
 gem 'cancancan', '~> 1.15'
