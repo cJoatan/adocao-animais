@@ -7,6 +7,8 @@ class User < ApplicationRecord
  	has_many :adoptions_created, class_name: 'Adoption', inverse_of: :user_creator
  	has_many :adoptions, class_name: 'Adoption', inverse_of: :user_adopted
 
+ 	enum gender: [:Masculino, :Feminino]
+ 	
  	def adoptions_created
     Adoption.where(['user_creator_id = ?', self.id])
  	end

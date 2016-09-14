@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :breeds
   resources :animals
   resources :adoptions
-  devise_for :users
+  devise_for :users, controllers: {registrations: "registrations"}
   resources :users
   resources :adoptions_images, only:[:create, :update, :destroy]
 

@@ -1,5 +1,5 @@
-class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+class RegistrationsController < Devise::RegistrationsController
+	before_action :set_user, only: [:show, :edit, :update, :edit_password, :new_password, :destroy]
 
   # GET /users
   # GET /users.json
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(sign_up_params)
 
     respond_to do |format|
       if @user.save
@@ -51,6 +51,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_password
+    
+  end
+
+  def new_password
+    
+  end
+
+  def update_password
+    @user = User.find(current_user.id)
+    if @user.update(password_params)
+      # Sign in the user by passing validation in case their password changed
+      sign_in @user, :bypass => true
+      redirect_to @user
+    else
+      render "edit"
+    end
+  end
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
@@ -62,14 +81,20 @@ class UsersController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find(current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
+    def sign_up_params
       params.require(:user).permit(:full_name, :user_name, :adress, :adress_number, :number, :neighborhood,
-        :complement,:tel_1, :tel_2, :cep, :state, :gender, :age, :email, :password, :password_confirmation, :admin)
+        :complement, :tel_1, :tel_2, :cep, :state, :gender, :age, :email, :password, :password_confirmation)
+    end
+
+    def password_params
+      # NOTE: Using `strong_parameters` gem
+      params.require(:user).permit(:password, :password_confirmation)
     end
 end

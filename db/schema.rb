@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160908230135) do
+ActiveRecord::Schema.define(version: 20160910182957) do
 
   create_table "adoptions", force: :cascade do |t|
     t.integer  "animal_id"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160908230135) do
     t.string   "complement"
     t.string   "cep"
     t.string   "state"
-    t.integer  "genre"
+    t.integer  "gender"
     t.integer  "age"
     t.boolean  "admin"
     t.datetime "created_at",                          null: false
