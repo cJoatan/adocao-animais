@@ -241,7 +241,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  cancancan (~> 1.15)
+  cancancan
   chart-js-rails
   ckeditor
   coffee-rails (~> 4.2)

@@ -1,4 +1,12 @@
 pt:
+  disabled: Desabilitado
+  enabled: Habilitado
+  remember_me: Lembrar-me
+  forgot_your_password?: Esqueceu sua senha?
+  login: Entrar
+  signup: Cadastrar
+  logout: Sair
+  adoptions: Adoções
   activemodel:
     attributes:
       access_level_session:
@@ -21,6 +29,7 @@ pt:
   activerecord:
     models: 
       user: Usuário
+      adoption: Adoção
     attributes:
       user: 
         email: Email
@@ -36,9 +45,11 @@ pt:
         adress_number: Número
         complement: Complemento
         state: Estado
-        genders:
-          male: Masculino
-          female: Feminino
+        gender: Sexo
+      adoption:
+        animal_type: Animal
+        breed: Raça
+        age: Idade
   links:
     back: Voltar
     show: Acessar
@@ -54,5 +65,11 @@ pt:
       first: Primeiro
       last: Último
       truncate: "..."
-  disabled: Desabilitado
-  enabled: Habilitado
+  devise:
+    failure:
+      user:
+        not_found_in_database: Email ou senha não encontrados
+  cancel_my_account: Cancelar minha conta
+  errors:
+    messages:
+       not_saved: "Verifique o erro abaixo:"

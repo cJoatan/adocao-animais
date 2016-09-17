@@ -37,7 +37,7 @@ gem 'pg'
 
 #Secure
 gem 'devise'
-gem 'cancancan', '~> 1.15'
+gem 'cancancan'
 
 #File upload
 gem 'paperclip', '~> 5.1'

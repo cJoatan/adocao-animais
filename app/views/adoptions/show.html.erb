@@ -34,7 +34,7 @@
                         <%= image_tag image.avatar.url(:medium), class:"img-responsive center-block" %>
                         <div class="carousel-caption">
                           <h3>
-                            <%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %>
+                            <%= link_to 'Remover imagem', image, method: :delete, data: { confirm: 'Are you sure?' } %>
                           </h3>
                         </div>
                       </div>
@@ -43,7 +43,7 @@
                         <%= image_tag image.avatar.url(:medium), class:"img-responsive center-block" %>
                         <div class="carousel-caption">
                           <h3>
-                            <%= link_to 'Remover', image, method: :delete, data: { confirm: 'Are you sure?' } %>
+                            <%= link_to 'Remover imagem', image, method: :delete, data: { confirm: 'Are you sure?' } %>
                           </h3>
                         </div>
                       </div>
@@ -64,57 +64,67 @@
               </a>
             </div>
           </div>
-          <div class="box-footer">
-            <%= form_for(@adoption_image, html: { multipart: true }) do |f| %>
-              <%= f.hidden_field_tag :adoption_id, @adoption.id %>
-              <div class="pull-left">
-                <%= f.file_field :avatar, required: true %>
-              </div>
-              <div class="pull-right">
-                <%= f.submit "Adicionar", class: "btn btn-primary btn-flat"%>
-              </div>
-            <% end %>
-          </div>
+          <% if can? :edit, @adoption %>
+            <div class="box-footer">
+              <%= form_for(@adoption_image, html: { multipart: true }) do |f| %>
+                <%= f.hidden_field_tag :adoption_id, @adoption.id %>
+                <div class="pull-left">
+                  <%= f.file_field :avatar, required: true %>
+                </div>
+                <div class="pull-right">
+                  <%= f.submit "Adicionar", class: "btn btn-primary btn-flat"%>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
 
     <div class="col-sm-6">
       <div class="box box-primary">
+        <div class="box-header with-border">
+          <div class="user-block">
+            <%= image_tag @adoption.user_creator.avatar.url(:thumb), class: "img-circle" %>
+            <span class="username">
+              <%= @adoption.user_creator.user_name %>
+            </span>
+            <span class="description">Publicado em <%= l @adoption.created_at, format: :short %></span>
+          </div>
+        </div>
         <div class="box-body">
-          <p>
-            <strong>Animal type:</strong>
-            <%= @adoption.animal.name %>
-          </p>
-
-          <p>
-            <strong>Breed:</strong>
-            <%= @adoption.breed.name %>
-          </p>
-
-          <p>
-            <strong>Price:</strong>
-            <%= @adoption.price %>
-          </p>
-
-          <p>
-            <strong>Age:</strong>
-            <%= @adoption.age %>
-          </p>
-
-          <p>
-            <strong>User creator:</strong>
-            <%= @adoption.user_creator %>
-          </p>
-
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong><%= Adoption.human_attribute_name(:animal_type) %>:</strong>
+              <%= @adoption.animal.name %>
+            </li>
+            <li class="list-group-item">
+              <strong><%= Adoption.human_attribute_name(:breed) %>:</strong>
+              <%= @adoption.breed.name %>
+            </li>
+            <li class="list-group-item">
+              <strong><%= Adoption.human_attribute_name(:age) %>:</strong>
+              <%= @adoption.age %>
+            </li>
+          </ul>
           <p>
             <strong>User adopted:</strong>
             <%= @adoption.user_adopted %>
           </p>
-
-          <% link_to 'Edit', edit_adoption_path(@adoption) %> |
+          
+          <% link_to 'Edit', edit_adoption_path(@adoption) %>
           <% link_to 'Back', adoptions_path %>
         </div>
+        <% unless @adoption.user_creator.id == current_user.id %>
+          <div class="box-footer">
+            <div class="pull-left">
+              <%= link_to "Adotar", "/adoptions/#{@adoption.id}/user/#{current_user.id}/adopt", method: :post, class: "btn btn-success btn-flat pull-left" %>
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-warning btn-flat pull-right">Reportar</button>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

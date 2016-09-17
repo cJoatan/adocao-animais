@@ -1,12 +1,28 @@
 class AdoptionsController < ApplicationController
   before_action :set_adoption, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
+  
   # GET /adoptions
   # GET /adoptions.json
   def index
     @adoptions = Adoption.all
   end
 
+  def adoptions_of_a_created_user
+    @adoptions = Adoption.where(user_creator_id: params[:user_id])
+  end
+
+  def adopted
+    @adoptions = Adoption.where(user_adopted_id: params[:user_id])
+  end
+
+  def adopt
+    @adoption = Adoption.find(params[:adoption_id])
+    @adoption.user_adopted_id = params[:user_id]
+    @adoption.save
+    
+    redirect_to @adoption
+  end
   # GET /adoptions/1
   # GET /adoptions/1.json
   def show
@@ -31,7 +47,8 @@ class AdoptionsController < ApplicationController
   def create
     @adoption = Adoption.new(adoption_params)
     @adoption.adoptions_images = []
-  
+    @adoption.user_creator = current_user
+
     respond_to do |format|
       if @adoption.save
         format.html { redirect_to @adoption, notice: 'Adoption was successfully created.' }
@@ -79,7 +96,7 @@ class AdoptionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def adoption_params
-      params.require(:adoption).permit(:title, :description, :animal_id, :breed_id, :price, :age, :user_creator, :adoptions_images_id)
+      params.require(:adoption).permit(:title, :description, :animal_id, :breed_id, :price, :age, :adoptions_images_id)
     end
 
     def image_params

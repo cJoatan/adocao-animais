@@ -1,9 +1,45 @@
-<h2>Editar conta</h2>
+<section class="content-header">
+	<h1>Editar conta</h1>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="box box-primary">
+			<div class="box-body">
+				<%= render 'form'%>
+			</div>
+		</div>
 
-<%= render 'form'%>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+		<div class="box box-primary">
+			<div class="box-body">
+				<section>
+		      <legend>Editar senha</legend>
+		      <%= form_for(@user, :url => { :action => "update_password" } ) do |f| %>
+		      	<div class="form-group">
+					    <%= f.label :current_password, "Senha atual" %>
+					    <%= f.password_field :current_password, class: "form-control" %>
+					  </div>
+					  <div class="form-group">
+					    <%= f.label :password, "Senha" %>
+					    <%= f.password_field :password, :autocomplete => "off", class: "form-control"  %>
+					  </div>
+					  <div class="form-group">
+					    <%= f.label :password_confirmation %>
+					    <%= f.password_field :password_confirmation, class: "form-control" %>
+					  </div>
+					  <div class="action">
+					    <%= f.submit nil, class: "btn btn-primary" %>
+					  </div>
+					<% end %>
+		    </section>
+			</div>
+		</div>
+		<div class="box box-primary">
+			<div class="box-body">
+				<section>
+		      <legend>Cancelar conta</legend>
+					<div class="pull-left"><%= button_to t("cancel_my_account"), registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></div>
+		     </section>
+			</div>
+		</div>
+	</div>
+</section>

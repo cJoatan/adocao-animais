@@ -1,5 +1,6 @@
 class BreedsController < ApplicationController
   before_action :set_breed, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /breeds
   # GET /breeds.json
@@ -16,6 +17,7 @@ class BreedsController < ApplicationController
   def new
     @breed = Breed.new
     @animals = Animal.all
+    p "ATIVO"
   end
 
   # GET /breeds/1/edit

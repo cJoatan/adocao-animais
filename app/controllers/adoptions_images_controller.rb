@@ -1,5 +1,6 @@
 class AdoptionsImagesController < ApplicationController
   before_action :set_image, only: [:update, :destroy]
+  load_and_authorize_resource
 
   # POST /adoptions
   # POST /adoptions.json
