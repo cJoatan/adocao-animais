@@ -113,6 +113,7 @@
 
 	      <div class="content-wrapper">
 	      	<div class="container">
+	      		<% if user_signed_in? %>
 	      			<div class="row">
 						    <div class="col-xs-12">
 						    	</br>
@@ -134,6 +135,7 @@
 						      </div>
 						    </div>
 						  </div>
+						 <% end %>
 	        	<%= yield %>
 					</div>
 	      </div>

@@ -6,7 +6,7 @@ class Ability
     user ||= User.new
 
     can [:read, :show], Adoption
-
+    can :new, User
     if user.admin?
       can :manage, :all
 
