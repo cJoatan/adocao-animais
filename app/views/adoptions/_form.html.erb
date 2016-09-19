@@ -21,30 +21,84 @@
     <%= f.text_area :description, class: "form-control"  %>
   </div>
 
-  <div class="form-group col-sm-6">
-    <%= f.label :animal_id %>
-    <%= f.collection_select :animal_id, @animals, :id, :name, {}, class: "form-control" %>
-  </div>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <%= f.label :animal %>
+      <%= f.collection_select :animal_id, @animals, :id, :name, {}, class: "form-control" %>
+    </div>
 
-  <div class="form-group col-sm-6">
-    <%= f.label :breed_id %>
-    <%= f.collection_select :breed_id, @breeds, :id, :name, {}, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :price %>
-    <%= f.text_field :price, class: "form-control"  %>
+    <div class="form-group col-sm-6">
+      <%= f.label :breed %>
+      <%= f.collection_select :breed_id, @breeds, :id, :name, {}, class: "form-control" %>
+    </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :age, "Age(Months)" %>
+    <%= f.label :age, "Ano(em meses)" %>
     <%= f.number_field :age, class: "form-control"  %>
   </div>
-  <div class="form-group">
-    <%= f.label :user_adopted_id %>
-    <%= f.number_field :user_adopted_id, class: "form-control"  %>
-  </div>
 
+  <section>
+    <legend>Localização</legend>
+
+    <div class="form-group">
+      <div class="col-sm-off-set-2 col-xs-12">
+        <div class="checkbox">
+          <label>
+            <%= check_box_tag :use_my_info_location, @use_my_info_location, false %>
+            Usar minhas informações de localização (Se você marcar esta opção não precisa preencher o formulario de localização)
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <%= f.label :city %>
+          <%= f.text_field :city, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <%= f.label :neighborhood %>
+          <%= f.text_field :neighborhood, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="form-group">
+          <%= f.label :street %>
+          <%= f.text_field :street, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="form-group">
+          <%= f.label :address_number %>
+          <%= f.text_field :address_number, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <%= f.label :complement %>
+          <%= f.text_field :complement, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :cep %>
+      <%= f.text_field :cep, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :state %>
+      <%= f.text_field :state, class: "form-control" %>
+    </div>
+  </section>
   <div class="actions">
     <%= f.submit nil, class:"btn btn-danger"%>
   </div>

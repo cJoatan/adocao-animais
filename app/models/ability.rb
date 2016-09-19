@@ -15,7 +15,7 @@ class Ability
     if User.exists? user
       can :manage, Adoption, user_creator: user
       can [:edit, :destroy, :adoptions_of_a_created_user, :adopted], Adoption, user_creator: user
-      # can [:show, :edit], User, id: user.id
+      can :show, User, id: user.id
       can :create, AdoptionsImage
       can [:edit, :destroy], AdoptionsImage
       

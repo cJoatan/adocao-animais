@@ -9,9 +9,6 @@ pt:
   adoptions: Adoções
   activemodel:
     attributes:
-      access_level_session:
-        email: Email
-        password: Senha
     errors:
       messages:
         invalid_login: "Usuário ou senha inválidos"
@@ -37,19 +34,37 @@ pt:
         user_name: Apelido
         password: Senha
         password_confirmation: Confirme sua senha
+        current_password: senha atual
         born_date: Data de nascimento
         genre: Sexo
         age: Idade
         neighborhood: Bairro
-        adress: Rua
-        adress_number: Número
+        address_number: Número
         complement: Complemento
         state: Estado
         gender: Sexo
+        city: Cidade
+        street: Rua
       adoption:
+        title: Titulo
+        description: Descrição
         animal_type: Animal
         breed: Raça
         age: Idade
+        state: Estado
+        city: Cidade
+        adress: Rua
+        adress_number: Número
+        neighborhood: Bairro
+        street: Rua
+        address_number: Número
+        complement: Complemento
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              invalid: não é valida
   links:
     back: Voltar
     show: Acessar
@@ -69,6 +84,8 @@ pt:
     failure:
       user:
         not_found_in_database: Email ou senha não encontrados
+        invalid: Usuário ou senha inválidos
+        current_password: senha atual
     sessions:
       user:
         signed_out: Você foi deslogado com sucesso
@@ -76,3 +93,4 @@ pt:
   errors:
     messages:
        not_saved: "Verifique o erro abaixo:"
+       current_password: senha atual

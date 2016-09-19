@@ -1,28 +1,96 @@
 <section class="content">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-sm-10">
+
       <p id="notice"><%= notice %></p>
-      <% @adoptions.each do |adoption| %>
-        <div class="list-group-item col-xs-12 col-sm-10">
-          <div class=" col-xs-12 col-sm-2">
-            <%= image_tag adoption.adoptions_images.first.avatar.url(:medium), class: "img-responsive img-thumbnail" if adoption.adoptions_images.first != nil %>          
-          </div>
-          <div class="col-xs-12 col-sm-4">
-            <h4 class="list-group-item-heading">
-              <%= link_to adoption.title, adoption %>
-            </h4>
-            <p class="list-group-item-text"><b><%= adoption.animal.name %></b> da raça <b><%= adoption.breed.name %></b>, enviado em <b><%= l adoption.created_at, format: :short %></b></p>
-          </div>
-          <div class="col-xs-11 col-sm-5">
-            <p class="list-group-item-description"><%= adoption.description %></p>
-          </div>
-          <% if can? :destroy, adoption %>
-            <div class="pull-right">
-              <%= link_to 'Deletar', adoption, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-            </div>
-          <% end %>
+
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Busca</h3>
         </div>
-      <% end %>
+
+        <%= search_form_for @search do |f|%>
+          <div class="box-body">
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= f.label :animal_id_eq, "Animal" %>
+                <%= f.collection_select :animal_id_eq, @animals, :id, :name, {}, class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= f.label :breed_id_eq, "Raça" %>
+                <%= f.collection_select :breed_id_eq, @breeds, :id, :name, {}, class: "form-control" %>
+              </div>
+            </div>
+
+            <section>
+              <legend>Localização</legend>
+            </section>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <%= f.label :location_state_cont, "Estado" %>
+                <%= f.text_field :location_state_cont, class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <%= f.label :location_city_cont, "Cidade" %>
+                <%= f.text_field :location_city_cont, class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <%= f.label :location_neighborhood_cont, "Bairro" %>
+                <%= f.text_field :location_neighborhood_cont, class: "form-control" %>
+              </div>
+            </div>
+
+          </div>
+          <div class="box-footer">
+            <div class="actions col-xs-12">
+              <%= f.submit "Search", class: "btn btn-info btn-flat" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      
+        <% @adoptions.each do |adoption| %>
+          <div class="list-group-item col-xs-12" >
+            <div class=" col-xs-12 col-sm-2">
+              <%= image_tag adoption.adoptions_images.first.avatar.url(:medium), class: "img-responsive img-thumbnail" if adoption.adoptions_images.first != nil %>          
+            </div>
+            <div class="col-xs-12 col-sm-4">
+              <h4 class="list-group-item-heading">
+                <%= link_to adoption.title, adoption %>
+              </h4>
+              <p class="list-group-item-text"><b><%= adoption.animal.name %></b> da raça <b><%= adoption.breed.name %></b>, enviado em <b><%= l adoption.created_at, format: :short %></b></p>
+              <% begin %>
+                <p class="list-group-item-text">Em <%= adoption.city %>, <%= adoption.state %> - <%= adoption.neighborhood %>
+              <% rescue NoMethodError %>
+
+              <% end %>
+            </div>
+            <div class="col-xs-11 col-sm-5">
+              <p class="list-group-item-description"><%= adoption.description %></p>
+            </div>
+            <% if can? :destroy, adoption %>
+              <div class="pull-right">
+                <%= link_to 'Deletar', adoption, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+      <div style="margin: auto; width: 50%;">
+        <%= paginate @adoptions %>
+      </div>
+
     </div>
   </div>
 </section>

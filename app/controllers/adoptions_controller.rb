@@ -5,7 +5,10 @@ class AdoptionsController < ApplicationController
   # GET /adoptions
   # GET /adoptions.json
   def index
-    @adoptions = Adoption.all
+    @search = Adoption.ransack(params[:q])
+    @adoptions = @search.result.includes(:location).page(params[:page])
+    @breeds = Breed.all
+    @animals = Animal.all
   end
 
   def adoptions_of_a_created_user
@@ -32,6 +35,7 @@ class AdoptionsController < ApplicationController
   # GET /adoptions/new
   def new
     @adoption = Adoption.new
+    @adoption.location = Location.new
     @animals = Animal.all
     @breeds = Breed.all
   end
@@ -45,9 +49,15 @@ class AdoptionsController < ApplicationController
   # POST /adoptions
   # POST /adoptions.json
   def create
+
     @adoption = Adoption.new(adoption_params)
     @adoption.adoptions_images = []
     @adoption.user_creator = current_user
+
+    if params[:use_my_info_location]
+      @adoption.location_id = current_user.location_id
+      p "ENTROOW #{@adoption.location_id}"
+    end
 
     respond_to do |format|
       if @adoption.save

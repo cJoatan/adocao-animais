@@ -93,6 +93,9 @@
           </div>
         </div>
         <div class="box-body">
+          <section>
+            <legend>Sobre</legend>
+          </section>
           <ul class="list-group">
             <li class="list-group-item">
               <strong><%= Adoption.human_attribute_name(:animal_type) %>:</strong>
@@ -106,19 +109,60 @@
               <strong><%= Adoption.human_attribute_name(:age) %>:</strong>
               <%= @adoption.age %>
             </li>
+          </ul> 
+
+          <section>
+            <legend>Contato(mock)</legend>
+          </section>
+
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong><%= User.human_attribute_name(:email) %>:</strong>
+              <%= @adoption.user_creator.email %>
+            </li>
+            <li class="list-group-item">
+              <strong><%= User.human_attribute_name(:tel_1) %>:</strong>
+              <%= @adoption.user_creator.tel_1 %>
+            </li>
+            <li class="list-group-item">
+              <strong><%= User.human_attribute_name(:tel_2) %>:</strong>
+              <%= @adoption.user_creator.tel_2 %>
+            </li>
+          </ul> 
+          <section>
+            <legend>Localização</legend>
+          </section>
+          <% @adoption.location ||= Location.new %>
+          <ul class="list-group">
+           <li class="list-group-item">
+              <strong><%= Adoption.human_attribute_name(:state) %>:</strong>
+              <%= @adoption.state %>
+            </li>
+            <li class="list-group-item">
+              <strong><%= Adoption.human_attribute_name(:city) %>:</strong>
+              <%= @adoption.city %>
+            </li>
+            <li class="list-group-item">
+              <strong><%= Adoption.human_attribute_name(:neighborhood) %>:</strong>
+              <%= @adoption.neighborhood %>
+            </li>
+            <li class="list-group-item">
+              <strong><%= Adoption.human_attribute_name(:street) %>:</strong>
+              <%= @adoption.street %>
+            </li>
+            <li class="list-group-item">
+              <strong><%= Adoption.human_attribute_name(:address_number) %>:</strong>
+              <%= @adoption.address_number %> -
+              <%= @adoption.complement %>
+            </li>
           </ul>
-          <p>
-            <strong>User adopted:</strong>
-            <%= @adoption.user_adopted %>
-          </p>
-          
           <% link_to 'Edit', edit_adoption_path(@adoption) %>
           <% link_to 'Back', adoptions_path %>
         </div>
-        <% unless @adoption.user_creator.id == current_user.id %>
+        <% unless @adoption.user_creator == current_user %>
           <div class="box-footer">
             <div class="pull-left">
-              <%= link_to "Adotar", "/adoptions/#{@adoption.id}/user/#{current_user.id}/adopt", method: :post, class: "btn btn-success btn-flat pull-left" %>
+              <%= link_to "Adotar", "/adoptions/#{@adoption.id}/user/#{current_user.id}/adopt", method: :post, class: "btn btn-success btn-flat pull-left" unless current_user == nil %>
             </div>
             <div class="pull-right">
                 <button class="btn btn-warning btn-flat pull-right">Reportar</button>

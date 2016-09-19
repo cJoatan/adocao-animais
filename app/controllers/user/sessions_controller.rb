@@ -25,9 +25,8 @@ class User::SessionsController < Devise::SessionsController
 
   protected
 
-
   def user_already_signed_id
-      redirect_to adoptions_url
+    redirect_to adoptions_url
   end
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_in_params
