@@ -89,6 +89,9 @@ pt:
     sessions:
       user:
         signed_out: Você foi deslogado com sucesso
+    passwords:
+      user:
+        send_instructions: Foram enviadas instruções para seu email de recuperação de senha
   cancel_my_account: Cancelar minha conta
   errors:
     messages:

@@ -32,7 +32,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   
   # email
-  config.action_mailer.default_url_options = { :host => 'localhost' }
+  config.action_mailer.default_url_options = { :host => 'meupetdev.herokuapp.com' }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

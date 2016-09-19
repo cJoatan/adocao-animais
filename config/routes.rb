@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :adoptions do 
     post "/user/:user_id/adopt", to: "adoptions#adopt"
   end
-  devise_for :users, controllers: {sessions: 'user/sessions', registrations: "registrations"}
+  devise_for :users, controllers: {sessions: 'user/sessions', registrations: "registrations", passwords: "passwords"}
   resources :users do 
     get "adoptions_created", to: "adoptions#adoptions_of_a_created_user"
     get "adopted", to: "adoptions#adopted"
