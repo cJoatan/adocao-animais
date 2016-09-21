@@ -111,9 +111,9 @@
           <div class="pull-right">
             <% if can?(:enable, Adoption) && can?(:disable, Adoption) %>
               <% if @adoption.disabled? %>
-                <%= link_to "Habilitar", adoption_to_enabled_path(@adoption), class: "btn btn-success btn-flat", method: :post %>
+                <%= link_to "Habilitar", adoption_to_enabled_path(@adoption), class: "btn btn-success btn-flat", method: :post, data: { confirm: 'Pronto para publicar a adoção?' } %>
               <% else %>
-                <%= link_to "Desabilitar", adoption_to_disabled_path(@adoption), class: "btn btn-warning btn-flat", method: :post %>
+                <%= link_to "Desabilitar", adoption_to_disabled_path(@adoption), class: "btn btn-warning btn-flat", method: :post, data: { confirm: 'Deseja desabilitar a adopção?' } %>
               <% end %>
             <% end %>
           </div>
