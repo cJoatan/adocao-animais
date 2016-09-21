@@ -1,6 +1,6 @@
 class AdoptionsController < ApplicationController
   before_action :set_adoption, only: [:show, :edit, :update, :destroy]
-  before_action :set_adoption_id, only: [:to_enabled, :to_disabled]
+  before_action :set_adoption_id, only: [:to_enabled, :to_disabled, :to_finished]
   load_and_authorize_resource
   
   # GET /adoptions
@@ -101,6 +101,13 @@ class AdoptionsController < ApplicationController
     @adoption.save
 
     redirect_to @adoption, notice: "Sua adoção foi desabilitada com sucesso"
+  end
+
+  def to_finished
+    @adoption.status = "finished"
+    @adoption.save
+
+    redirect_to @adoption, notice: "Sua adoção foi finalizada com sucesso"
   end
 
   # DELETE /adoptions/1

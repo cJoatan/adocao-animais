@@ -29,7 +29,7 @@
 
     <div class="form-group col-sm-6">
       <%= f.label :breed %>
-      <%= f.collection_select :breed_id, @breeds, :id, :name, {}, class: "form-control" %>
+      <%= f.grouped_collection_select :breed_id, @animals, :breeds, :name, :id, :name, {}, class: "form-control" %>
     </div>
   </div>
 

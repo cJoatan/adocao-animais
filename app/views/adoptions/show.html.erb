@@ -94,7 +94,7 @@
       <% if @adoption.disabled? %>
         <div class="alert alert-info alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-          Sua adoção está atualmente <b>desabilitada</b>, clique em <b>habilitar</b> para publica-la
+          Sua adoção está atualmente <b>desabilitada</b>, clique em <b>publicar</b> para habilita-la
         </div>
       <% end %>
       <div class="box box-primary">
@@ -108,15 +108,27 @@
           </div>
         </div>
         <div class="box-body">
-          <div class="pull-right">
+          <% if @adoption.enabled? %>
             <% if can?(:enable, Adoption) && can?(:disable, Adoption) %>
-              <% if @adoption.disabled? %>
-                <%= link_to "Habilitar", adoption_to_enabled_path(@adoption), class: "btn btn-success btn-flat", method: :post, data: { confirm: 'Pronto para publicar a adoção?' } %>
-              <% else %>
-                <%= link_to "Desabilitar", adoption_to_disabled_path(@adoption), class: "btn btn-warning btn-flat", method: :post, data: { confirm: 'Deseja desabilitar a adopção?' } %>
-              <% end %>
+              <div class="pull-left">
+                 <%= link_to "Finalizar adoção", adoption_to_finished_path(@adoption), class: "btn btn-success btn-flat", method: :post, data: { confirm: 'Tem certeza que deseja finalizar essa adoção?' } %>
+              </div>
             <% end %>
-          </div>
+          <% end %>
+
+          <% if can?(:to_enable, Adoption) && can?(:to_disable, Adoption) %>
+            <div class="pull-right">
+              <% unless @adoption.finished? %>
+                <% if @adoption.disabled? %>
+                  <%= link_to "Publicar", adoption_to_enabled_path(@adoption), class: "btn btn-success btn-flat", method: :post, data: { confirm: 'Pronto para publicar a adoção?' } %>
+                <% else %>
+                  <%= link_to "Desabilitar", adoption_to_disabled_path(@adoption), class: "btn btn-warning btn-flat", method: :post, data: { confirm: 'Deseja desabilitar a adoção?' } %>
+                <% end %>
+              <% else %>
+                  <%= link_to "Republicar", adoption_to_enabled_path(@adoption), class: "btn btn-success btn-flat", method: :post, data: { confirm: 'Tem certeza que deseja para republicar a adoção?' } %>
+              <% end %>
+            </div>
+          <% end %>
           <section>
             <legend>Sobre</legend>
           </section>
