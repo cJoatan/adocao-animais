@@ -10,7 +10,7 @@ class AdoptionsImagesController < ApplicationController
 
     respond_to do |format|
       if @adoption_image.save
-        format.html { redirect_to @adoption_image.adoption, notice: 'Adoption was successfully created.' }
+        format.html { redirect_to @adoption_image.adoption, notice: 'A imagem foi salva com sucesso.' }
       else
 
       end
@@ -23,7 +23,7 @@ class AdoptionsImagesController < ApplicationController
   def update
     respond_to do |format|
       if @adoption.update(adoption_params)
-        format.html { redirect_to @adoption, notice: 'Adoption was successfully updated.' }
+        format.html { redirect_to @adoption, notice: 'A imagem foi salva com sucesso.' }
         format.json { render :show, status: :ok, location: @adoption }
       else
         format.html { render :edit }
@@ -38,7 +38,7 @@ class AdoptionsImagesController < ApplicationController
     image = @adoption_image
     @adoption_image.destroy
     respond_to do |format|
-      format.html { redirect_to image.adoption, notice: 'Adoption was successfully destroyed.' }
+      format.html { redirect_to image.adoption, notice: 'A imagem foi removida com sucesso.' }
     end
   end
 

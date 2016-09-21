@@ -1,87 +1,102 @@
-<p id="notice"><%= notice %></p>
+
 <section class="content">
   <div class="row">
+    <div class="col-xs-12">
+      <p id="notice"><%= notice %></p>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-sm-6">
-      <div class="col-xs-12">
-        <div class="box box-widget">
-          <div class="box-body">
-            <div id="animals-image-carousel" class="carousel slide" data-ride="carousel">
-              <!-- Indicators -->
-              <ol class="carousel-indicators">
-              <% @adoption.adoptions_images.each_with_index do |image, index| %>
-                <% if index == 0 %>
-                  <li data-target="#animals-image-carousel" data-slide-to="<%= index %>" class="active"></li>
-                <% else %>
-                  <li data-target="#animals-image-carousel" data-slide-to="<%= index %>"></li>
-                <% end %>
+      <% unless @adoption.adoptions_images.present? %>
+        <div class="alert alert-info alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+          Atualmente você não tem imagens para sua adoção.
+        </div>
+      <% end %>
+      <div class="box box-widget">
+        <div class="box-body">
+          <div id="animals-image-carousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+            <% @adoption.adoptions_images.each_with_index do |image, index| %>
+              <% if index == 0 %>
+                <li data-target="#animals-image-carousel" data-slide-to="<%= index %>" class="active"></li>
+              <% else %>
+                <li data-target="#animals-image-carousel" data-slide-to="<%= index %>"></li>
               <% end %>
+            <% end %>
 
-              </ol>
+            </ol>
 
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner" role="listbox">
-                <% if @adoption.adoptions_images.size < 1 %>
-                  <div class="item active">
-                    <%= image_tag "/default-animal.png", class:"img-responsive center-block" %>
-                    <h3 class="carousel-caption">
-                      Adicione uma imagem
-                    </h3>
-                  </div>
-                <% else %>
-                  <% @adoption.adoptions_images.each_with_index do |image, index| %>
-                    <% if index == 0 %>
-                      <div class="item active">
-                        <%= image_tag image.avatar.url(:medium), class:"img-responsive center-block" %>
-                        <div class="carousel-caption">
-                          <h3>
-                            <%= link_to 'Remover imagem', image, method: :delete, data: { confirm: 'Are you sure?' } %>
-                          </h3>
-                        </div>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              <% if @adoption.adoptions_images.size < 1 %>
+                <div class="item active">
+                  <%= image_tag "/default-animal.png", class:"img-responsive center-block" %>
+                  <h3 class="carousel-caption">
+                    Adicione uma imagem
+                  </h3>
+                </div>
+              <% else %>
+                <% @adoption.adoptions_images.each_with_index do |image, index| %>
+                  <% if index == 0 %>
+                    <div class="item active">
+                      <%= image_tag image.avatar.url(:medium), class:"img-responsive center-block" %>
+                      <div class="carousel-caption">
+                        <h3>
+                          <%= link_to 'Remover imagem', image, method: :delete, data: { confirm: 'Are you sure?' } %>
+                        </h3>
                       </div>
-                    <% else %>
-                      <div class="item">
-                        <%= image_tag image.avatar.url(:medium), class:"img-responsive center-block" %>
-                        <div class="carousel-caption">
-                          <h3>
-                            <%= link_to 'Remover imagem', image, method: :delete, data: { confirm: 'Are you sure?' } %>
-                          </h3>
-                        </div>
+                    </div>
+                  <% else %>
+                    <div class="item">
+                      <%= image_tag image.avatar.url(:medium), class:"img-responsive center-block" %>
+                      <div class="carousel-caption">
+                        <h3>
+                          <%= link_to 'Remover imagem', image, method: :delete, data: { confirm: 'Are you sure?' } %>
+                        </h3>
                       </div>
-                    <% end %>
+                    </div>
                   <% end %>
                 <% end %>
-
-              </div>
-
-              <!-- Controls -->
-              <a class="left carousel-control" href="#animals-image-carousel" role="button" data-slide="prev">
-                <span class="fa fa-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="right carousel-control" href="#animals-image-carousel" role="button" data-slide="next">
-                <span class="fa fa-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
-          </div>
-          <% if can? :edit, @adoption %>
-            <div class="box-footer">
-              <%= form_for(@adoption_image, html: { multipart: true }) do |f| %>
-                <%= f.hidden_field_tag :adoption_id, @adoption.id %>
-                <div class="pull-left">
-                  <%= f.file_field :avatar, required: true %>
-                </div>
-                <div class="pull-right">
-                  <%= f.submit "Adicionar", class: "btn btn-primary btn-flat"%>
-                </div>
               <% end %>
+
             </div>
-          <% end %>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#animals-image-carousel" role="button" data-slide="prev">
+              <span class="fa fa-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#animals-image-carousel" role="button" data-slide="next">
+              <span class="fa fa-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
         </div>
+        <% if can? :edit, @adoption %>
+          <div class="box-footer">
+            <%= form_for(@adoption_image, html: { multipart: true }) do |f| %>
+              <%= f.hidden_field_tag :adoption_id, @adoption.id %>
+              <div class="pull-left">
+                <%= f.file_field :avatar, required: true %>
+              </div>
+              <div class="pull-right">
+                <%= f.submit "Adicionar", class: "btn btn-primary btn-flat"%>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
 
     <div class="col-sm-6">
+      <% if @adoption.disabled? %>
+        <div class="alert alert-info alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+          Sua adoção está atualmente <b>desabilitada</b>, clique em <b>habilitar</b> para publica-la
+        </div>
+      <% end %>
       <div class="box box-primary">
         <div class="box-header with-border">
           <div class="user-block">
@@ -98,7 +113,7 @@
               <% if @adoption.disabled? %>
                 <%= link_to "Habilitar", adoption_to_enabled_path(@adoption), class: "btn btn-success btn-flat", method: :post %>
               <% else %>
-                <button class="btn btn-warning btn-flat">Desabilitar</button>
+                <%= link_to "Desabilitar", adoption_to_disabled_path(@adoption), class: "btn btn-warning btn-flat", method: :post %>
               <% end %>
             <% end %>
           </div>

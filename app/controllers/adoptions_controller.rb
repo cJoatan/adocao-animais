@@ -1,5 +1,6 @@
 class AdoptionsController < ApplicationController
   before_action :set_adoption, only: [:show, :edit, :update, :destroy]
+  before_action :set_adoption_id, only: [:to_enabled, :to_disabled]
   load_and_authorize_resource
   
   # GET /adoptions
@@ -89,11 +90,17 @@ class AdoptionsController < ApplicationController
   end
 
   def to_enabled
-    @adoption = Adoption.find(params[:adoption_id])
     @adoption.status = "enabled"
     @adoption.save
 
     redirect_to @adoption, notice: "Sua adoção foi publicada com sucesso"
+  end
+
+  def to_disabled
+    @adoption.status = "disabled"
+    @adoption.save
+
+    redirect_to @adoption, notice: "Sua adoção foi desabilitada com sucesso"
   end
 
   # DELETE /adoptions/1
@@ -108,6 +115,10 @@ class AdoptionsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_adoption_id
+      @adoption = Adoption.find(params[:adoption_id])
+    end
+
     def set_adoption
       @adoption = Adoption.find(params[:id])
     end
