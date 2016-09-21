@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160921122418) do
+ActiveRecord::Schema.define(version: 20160921123631) do
 
   create_table "adoptions", force: :cascade do |t|
     t.integer  "animal_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160921122418) do
     t.text     "description"
     t.integer  "location_id"
     t.boolean  "blocked",         default: false
+    t.integer  "status",          default: 0
   end
 
   create_table "adoptions_images", force: :cascade do |t|

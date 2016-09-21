@@ -10,5 +10,9 @@ class Adoption < ApplicationRecord
 	attr_accessor :state, :city, :street, :neighborhood, :address_number, :complement, :cep
 	delegate :state, :city, :street, :neighborhood, :address_number, :complement, :cep, to: :location
 
-	enum status: {:disabled, :enabled, :finished}
+	enum status: {disabled: 0, enabled: 1, finished: 2}
+
+	scope :disabled, -> {where(status: "disabled")}
+	scope :enabled, -> {where(status: "enabled")}
+	scope :finished, -> {where(status: "finished")}
 end
