@@ -93,6 +93,15 @@
           </div>
         </div>
         <div class="box-body">
+          <div class="pull-right">
+            <% if can?(:enable, Adoption) && can?(:disable, Adoption) %>
+              <% if @adoption.disabled? %>
+                <%= link_to "Habilitar", adoption_to_enabled_path(@adoption), class: "btn btn-success btn-flat", method: :post %>
+              <% else %>
+                <button class="btn btn-warning btn-flat">Desabilitar</button>
+              <% end %>
+            <% end %>
+          </div>
           <section>
             <legend>Sobre</legend>
           </section>

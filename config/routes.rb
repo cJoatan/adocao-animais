@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
   resources :breeds
   resources :animals
+
   resources :adoptions do 
     post "/user/:user_id/adopt", to: "adoptions#adopt"
+    post "to_enabled", to: "adoptions#to_enabled"
   end
+
   devise_for :users, controllers: {sessions: 'user/sessions', registrations: "registrations", passwords: "passwords"}
   resources :users do 
     get "adoptions_created", to: "adoptions#adoptions_of_a_created_user"
     get "adopted", to: "adoptions#adopted"
   end
+
   resources :adoptions_images, only:[:create, :update, :destroy]
 
   devise_scope :user do 

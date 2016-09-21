@@ -5,7 +5,7 @@ class AdoptionsController < ApplicationController
   # GET /adoptions
   # GET /adoptions.json
   def index
-    @search = Adoption.ransack(params[:q])
+    @search = Adoption.enabled.ransack(params[:q])
     @adoptions = @search.result.includes(:location).page(params[:page])
     @breeds = Breed.all
     @animals = Animal.all
@@ -86,6 +86,14 @@ class AdoptionsController < ApplicationController
         format.json { render json: @adoption.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def to_enabled
+    @adoption = Adoption.find(params[:adoption_id])
+    @adoption.status = "enabled"
+    @adoption.save
+
+    redirect_to @adoption, notice: "Sua adoção foi publicada com sucesso"
   end
 
   # DELETE /adoptions/1
