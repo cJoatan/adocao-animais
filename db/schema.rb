@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160918181129) do
+ActiveRecord::Schema.define(version: 20160921122418) do
 
   create_table "adoptions", force: :cascade do |t|
     t.integer  "animal_id"
@@ -19,12 +19,13 @@ ActiveRecord::Schema.define(version: 20160918181129) do
     t.integer  "age"
     t.integer  "user_creator_id"
     t.integer  "user_adopted_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "breed_id"
     t.string   "title"
     t.text     "description"
     t.integer  "location_id"
+    t.boolean  "blocked",         default: false
   end
 
   create_table "adoptions_images", force: :cascade do |t|

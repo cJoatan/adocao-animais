@@ -9,4 +9,6 @@ class Adoption < ApplicationRecord
 
 	attr_accessor :state, :city, :street, :neighborhood, :address_number, :complement, :cep
 	delegate :state, :city, :street, :neighborhood, :address_number, :complement, :cep, to: :location
+
+	enum status: {:disabled, :enabled, :finished}
 end
