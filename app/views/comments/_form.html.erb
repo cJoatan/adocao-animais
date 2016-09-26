@@ -12,12 +12,10 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :content %>
     <%= f.text_area :content, class: "form-control" %>
   </div>
 
   <%= f.hidden_field_tag :adoption_id, @adoption.id %>
-
 
   <div class="actions">
     <%= f.submit nil, class: "btn btn-flat btn-success" %>

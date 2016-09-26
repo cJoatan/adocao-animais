@@ -111,7 +111,10 @@
                 <div class="comment-text">
                   <span class="username">
                     <%= current_user.user_name %>
-                    <span class="text-muted pull-right"><%= l comment.created_at, format: :short %></span>
+                    <span class="text-muted pull-right">
+                      <%= l comment.created_at, format: :short %>
+                      <%= link_to 'Destroy', adoption_comment_path(@adoption, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
+                    </span>
                   </span>
                   <%= comment.content %>
                 </div>
