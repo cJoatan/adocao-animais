@@ -1,4 +1,6 @@
-
+<section class="content-header">
+  <h1><%= @adoption.title %></h1>
+</section>
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
@@ -88,6 +90,36 @@
           </div>
         <% end %>
       </div>
+
+
+      <section>
+        <legend>Comentários</legend>
+      </section>
+      <% if can? :create, Comment %>
+        <div class="box box-widget">
+          <div class="box-body">
+            <%= render '/comments/form', comment: Comment.new %>
+          </div>
+        </div>
+      <% end %>
+      <div class="box box-widget">
+        <% @adoption.comments.each do |comment| %>
+
+            <div class="box-body box-comments">
+              <div class="box-comment">
+                <%= image_tag current_user.avatar.url(:thumb), class: "img-circle img-sm"%>
+                <div class="comment-text">
+                  <span class="username">
+                    <%= current_user.user_name %>
+                    <span class="text-muted pull-right"><%= l comment.created_at, format: :short %></span>
+                  </span>
+                  <%= comment.content %>
+                </div>
+              </div>
+            </div>
+
+        <% end %>
+      </div>
     </div>
 
     <div class="col-sm-6">
@@ -99,6 +131,14 @@
       <% end %>
       <div class="box box-primary">
         <div class="box-header with-border">
+          <% if can? :edit, @adoption %>
+            <div class="pull-right box-tootle">
+              <%= link_to edit_adoption_path(@adoption), class: "btn btn-primary btn-flat" do %>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                Editar
+              <% end %>
+            </div>
+          <% end %>
           <div class="user-block">
             <%= image_tag @adoption.user_creator.avatar.url(:thumb), class: "img-circle" %>
             <span class="username">

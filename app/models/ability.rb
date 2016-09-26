@@ -20,6 +20,9 @@ class Ability
       can :show, User, id: user.id
       can :create, AdoptionsImage
       can [:edit, :destroy], AdoptionsImage
+      can :create, Comment
+      can :destroy, Comment, user: user
+       
     end
     # Define abilities for the passed in user here. For example:
     #

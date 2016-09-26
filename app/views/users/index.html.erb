@@ -12,6 +12,48 @@
           <div class="box-title">Busca avançada</div>
         </div>
         <div class="box-body">
+            <%= search_form_for @search do |f|%>
+          <div class="box-body">
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= f.label :full_name_cont, "Nome" %>
+                <%= f.text_field :full_name_cont, class: "form-control" %>
+              </div>
+            </div>
+
+            <section>
+              <legend>Localização</legend>
+            </section>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <%= f.label :location_state_cont, "Estado" %>
+                <%= f.text_field :location_state_cont, class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <%= f.label :location_city_cont, "Cidade" %>
+                <%= f.text_field :location_city_cont, class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <%= f.label :location_neighborhood_cont, "Bairro" %>
+                <%= f.text_field :location_neighborhood_cont, class: "form-control" %>
+              </div>
+            </div>
+
+          </div>
+          <div class="box-footer">
+            <div class="actions col-xs-12">
+              <%= f.submit "Search", class: "btn btn-info btn-flat" %>
+            </div>
+          </div>
+        <% end %>
         </div>
       </div>
       <div class="box box-primary">

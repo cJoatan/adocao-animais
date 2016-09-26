@@ -8,7 +8,8 @@ class User < ApplicationRecord
  	has_many :adoptions_created, class_name: 'Adoption', inverse_of: :user_creator
  	has_many :adoptions, class_name: 'Adoption', inverse_of: :user_adopted
  	belongs_to :location
- 	
+ 	has_many :comments
+  
   attr_accessor :state, :city, :street, :neighborhood, :address_number, :complement, :cep
 	delegate :state, :city, :street, :neighborhood, :address_number, :complement, :cep, to: :location
 
