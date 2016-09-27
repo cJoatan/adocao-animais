@@ -22,3 +22,9 @@
 
 # Ignore images
 /public/system/
+
+# Ignore databases
+/config/database.yml
+
+# Ignore databases
+/config/secrets.yml
