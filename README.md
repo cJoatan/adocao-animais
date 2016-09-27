@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+Descrição:
+Essa aplicação foi o resultado de desenvolvimento de um projeto para disciplina de Projeto Social no IFCE com o professor George Coelho.
+Basicamente é uma aplicação para adoção de animais e está disponivel abertamente.
 
-* Ruby version
+Versão do ruby: 2.3.1p112
 
-* System dependencies
+Dependências: Todas as dependência podem ser encontradas no GemFile e algumas principais estão listadas abaixo
+- Rails 5.0.0.1
+- twitter-bootstrap-rails
+- fullcalendar-rails
+- momentjs-rails
+- kaminari
+- ransack
+- chart-js-rails
+- select2-rails
 
-* Configuration
+No front-end foi utilizado bootstrap e o Admin-LTE
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
